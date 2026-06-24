@@ -67,9 +67,7 @@
           class="lightbox-prev"
           @click="prevPhoto"
           :disabled="lightboxIndex <= 1"
-        >
-          ‹
-        </button>
+        ></button>
         <div class="lightbox-content">
           <div class="lightbox-placeholder">
             <svg viewBox="0 0 80 60" fill="none" class="lb-icon">
@@ -104,9 +102,7 @@
           class="lightbox-next"
           @click="nextPhoto"
           :disabled="lightboxIndex >= 10"
-        >
-          ›
-        </button>
+        ></button>
       </div>
     </Teleport>
   </div>
@@ -114,7 +110,7 @@
 
 <script setup>
   import { ref } from "vue";
-  const photoSrc = "images/IMG_1387.JPG";
+  import photoSrc from "../assets/IMG_1387.jpg";
   const props = defineProps({
     day: {
       type: Object,
