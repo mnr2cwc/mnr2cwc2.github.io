@@ -114,7 +114,7 @@
 
 <script setup>
   import { ref } from "vue";
-  const photoSrc = "/images/IMG_1387.JPG";
+  const photoSrc = "images/IMG_1387.JPG";
   const props = defineProps({
     day: {
       type: Object,
