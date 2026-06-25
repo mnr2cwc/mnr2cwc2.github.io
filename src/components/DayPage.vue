@@ -40,8 +40,16 @@
           :class="{ featured: n === 1 }"
           @click="openLightbox(n)"
         >
-          <img :src="photoSrc" :alt="`Photo ${n}`" class="photo-img" />
+          <img
+            :src="
+              photos2[day.shortLabel][(n - 1) % photos2[day.shortLabel].length]
+            "
+            :alt="`Photo ${n}`"
+            class="photo-img"
+          />
           <!-- <div class="photo-placeholder">
+            :src="photos[(n - 1) % photos.length]"
+                        :src="photos[day.id][(n - 1) % photos.length]"
             <div class="placeholder-inner">
               <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none">
                 <rect x="4" y="8" width="40" height="32" rx="3" stroke="currentColor" stroke-width="1.5"/>
@@ -69,7 +77,15 @@
           :disabled="lightboxIndex <= 1"
         ></button>
         <div class="lightbox-content">
-          <div class="lightbox-placeholder">
+          <img
+            :src="
+              photos2[day.shortLabel][(i - 1) % photos2[day.shortLabel].length]
+            "
+            :alt="`Photo ${n}`"
+            class="photo-img"
+          />
+          <!-- <div class="lightbox-placeholder">
+            
             <svg viewBox="0 0 80 60" fill="none" class="lb-icon">
               <rect
                 x="2"
@@ -95,8 +111,8 @@
               />
             </svg>
             <p>Photo {{ lightboxIndex }}</p>
-            <p class="lb-sub">{{ day.label }} · {{ day.location }}</p>
-          </div>
+            <p class="lb-sub">{{ day.label }} · {{ day.location }}</p> -->
+          <!-- </div> -->
         </div>
         <button
           class="lightbox-next"
@@ -110,7 +126,7 @@
 
 <script setup>
   import { ref } from "vue";
-  import photoSrc from "../assets/IMG_1387.jpg";
+
   const props = defineProps({
     day: {
       type: Object,
@@ -118,12 +134,39 @@
     },
   });
 
+  const photos2 = {
+    D1: ["images/Day_1_1.JPG", "images/Day_1_2.JPEG", "images/Day_1_3.jpeg"],
+    D2: ["images/Day_2_1.PNG", "images/Day_2_2.jpeg"],
+    D3: ["images/Day_3_1.jpeg", "images/Day_3_2.JPG", "images/Day_3_3.JPG"],
+    D4: [
+      "images/Day_4_1.JPG",
+      "images/Day_4_2.JPG",
+      "images/Day_4_3.JPG",
+      "images/Day_4_4.jpeg",
+      "images/Day_4_5.JPG",
+      "images/Day_4_6.jpeg",
+    ],
+    D5: ["images/Day_5_1.JPG", "images/Day_5_2.JPG"],
+    D6: ["images/Day_6_1.JPG"],
+    D7: ["images/Day_7_1.jpeg", "images/Day_7_2.JPG", "images/Day_7_3.jpeg"],
+    D8: ["images/Day_8_1.jpeg", "images/Day_8_2.JPG", "images/Day_8_3.jpeg"],
+    D9: ["images/Day_9_1.JPG", "images/Day_9_2.JPG"],
+    // Add more days as needed
+  };
+  const photos = [
+    "images/Day_1_1.JPG",
+    "images/Day_1_2.JPEG",
+    "images/Day_1_3.jpeg",
+  ];
   const lightboxOpen = ref(false);
   const lightboxIndex = ref(1);
-
+  const i = ref(1);
   function openLightbox(n) {
     lightboxIndex.value = n;
     lightboxOpen.value = true;
+    i.value = n;
+    console.log(photos2[props.day.shortLabel]);
+    console.log(props.day);
   }
 
   function closeLightbox() {
@@ -290,10 +333,19 @@
       box-shadow 0.15s ease;
   }
 
+  .photo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
   .photo-slot.featured {
     grid-column: span 2;
     grid-row: span 2;
-    aspect-ratio: unset;
+    aspect-ratio: 4 / 3;
+    min-height: 320px;
   }
 
   .photo-slot:hover {
