@@ -24,7 +24,7 @@
           </div>
           <div class="stat-divider"></div>
           <div class="stat">
-            <span class="stat-num">14,000ft</span>
+            <span class="stat-num">14,271ft</span>
             <span class="stat-label">Highest point</span>
           </div>
         </div>
@@ -98,7 +98,7 @@
       title: "San Jeronimo Cooking Class",
       shortDesc:
         "Learn to cook traditional Peruvian dishes in the historic San Jeronimo neighborhood and hike up to Acient Ruins.",
-      coords: [-13.32237, -71.53042],
+      coords: [-13.547046, -71.883957],
     },
     {
       id: "day3",
@@ -107,7 +107,7 @@
       title: "Day 1 of Trek",
       shortDesc:
         "Drive through the sacred valley to the top of a mountain pass, then mountain bike down to the river to go white water rafting",
-      coords: [-13.1631, -72.545],
+      coords: [-13.00199, -72.624099],
     },
     {
       id: "day4",
@@ -116,7 +116,7 @@
       title: "Day 2 of Trek",
       shortDesc:
         "Start the day of backpacking along the inca trail to the hot springs of Santa Teresa.",
-      coords: [-13.517, -71.9784],
+      coords: [-13.129379, -72.593104],
     },
     {
       id: "day5",
@@ -125,7 +125,7 @@
       title: "Day 3 of Trek",
       shortDesc:
         "Start the day out with ziplineing over the valley and then hike to Aguas Calientes.",
-      coords: [-13.5236, -71.9724],
+      coords: [-13.155014, -72.524984],
     },
     {
       id: "day6",
@@ -134,7 +134,7 @@
       title: "Day 4 of Trek: Machu Picchu",
       shortDesc:
         "Wake up explore Aguas Calientes and play some soccer. Then take the bus up to Machu Picchu to explore the ancient citadel and learn about the history of the Inca civilization.",
-      coords: [-13.337, -72.1929],
+      coords: [-13.163301, -72.545035],
     },
     {
       id: "day7",
@@ -143,7 +143,7 @@
       title: "Free Day in Cusco",
       shortDesc:
         "The group has a free day aimlessly exploring Cusco. Accidently end up in the middle of a massive festival and have lunch overlooking the city of Cusco. Afterwards they trek to the top of the hills to Cristo Blanco.Meanwhile, Libby has the time of her life",
-      coords: [-13.721, -71.3312],
+      coords: [-13.5319, -71.9675],
     },
     {
       id: "day8",
@@ -161,7 +161,7 @@
       title: "Desert & Ballestas Islands",
       shortDesc:
         "Boat tour of the Ballestas Islands, then sandboarding the dunes of Huacachina.",
-      coords: [-13.8417, -76.2503],
+      coords: [-14.087322, -75.763235],
     },
   ];
 
