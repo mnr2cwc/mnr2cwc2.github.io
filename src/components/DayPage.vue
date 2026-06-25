@@ -127,7 +127,57 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { onMounted, ref } from "vue";
+
+  const assetMetadata = ref([]);
+
+  function getImageDimensions(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({ width: img.naturalWidth, height: img.naturalHeight });
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
+  async function loadAssetsMetadata() {
+    const modules = import.meta.glob("/src/assets/peruPics/*", {
+      as: "url",
+      eager: true,
+    });
+
+    assetMetadata.value = await Promise.all(
+      Object.entries(modules).map(async ([path, url]) => {
+        const fileName = path.split("/").pop();
+        const item = { path, fileName, url };
+
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+          item.size = blob.size;
+          item.type = blob.type || response.headers.get("content-type") || "";
+
+          if (item.type.startsWith("image/")) {
+            const dimensions = await getImageDimensions(url);
+            item.width = dimensions.width;
+            item.height = dimensions.height;
+          }
+        } catch (error) {
+          item.error = String(error);
+        }
+
+        return item;
+      }),
+    );
+
+    console.log("Loaded asset metadata:", assetMetadata.value);
+  }
+
+  onMounted(async () => {
+    await loadAssetsMetadata();
+  });
 
   const props = defineProps({
     day: {
@@ -167,11 +217,10 @@
   ];
   const lightboxOpen = ref(false);
   const lightboxIndex = ref(1);
-  const i = ref(1);
   function openLightbox(n) {
     lightboxIndex.value = n;
     lightboxOpen.value = true;
-    i.value = n;
+    // console.log(assetMetadata.value);
     // console.log(photos2[props.day.shortLabel]);
     // console.log(props.day);
   }
