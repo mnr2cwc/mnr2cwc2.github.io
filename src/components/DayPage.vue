@@ -79,7 +79,9 @@
         <div class="lightbox-content">
           <img
             :src="
-              photos2[day.shortLabel][(i - 1) % photos2[day.shortLabel].length]
+              photos2[day.shortLabel][
+                (lightboxIndex - 1) % photos2[day.shortLabel].length
+              ]
             "
             :alt="`Photo ${n}`"
             class="photo-img"
@@ -165,8 +167,8 @@
     lightboxIndex.value = n;
     lightboxOpen.value = true;
     i.value = n;
-    console.log(photos2[props.day.shortLabel]);
-    console.log(props.day);
+    // console.log(photos2[props.day.shortLabel]);
+    // console.log(props.day);
   }
 
   function closeLightbox() {
