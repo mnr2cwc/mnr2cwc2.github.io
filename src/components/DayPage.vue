@@ -152,7 +152,12 @@
     D6: ["images/Day_6_1.JPG"],
     D7: ["images/Day_7_1.jpeg", "images/Day_7_2.JPG", "images/Day_7_3.jpeg"],
     D8: ["images/Day_8_1.jpeg", "images/Day_8_2.JPG", "images/Day_8_3.jpeg"],
-    D9: ["images/Day_9_1.JPG", "images/Day_9_2.JPG"],
+    D9: [
+      "images/Day_9_4.jpeg",
+      "images/Day_9_1.JPG",
+      "images/Day_9_2.JPG",
+      "images/Day_9_3.jpeg",
+    ],
     // Add more days as needed
   };
   const photos = [
