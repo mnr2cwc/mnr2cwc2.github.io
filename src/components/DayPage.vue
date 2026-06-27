@@ -153,7 +153,7 @@
     // const location3 = "/src/assets/*/*";
 
     const modules = ref([]);
-
+    console.log("hostName:", hostName);
     if (hostName === "localhost") {
       modules.value = import.meta.glob("/src/assets/*/*", {
         as: "url",
@@ -190,7 +190,7 @@
       }),
     );
 
-    // console.log("Loaded asset metadata:", assetMetadata.value);
+    console.log("Loaded asset metadata:", assetMetadata.value);
   }
 
   function selectAssets(dayShortLabel) {
