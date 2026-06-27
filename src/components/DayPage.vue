@@ -160,7 +160,7 @@
         eager: true,
       });
     } else {
-      modules.value = import.meta.glob("/docs/assets/*/*", {
+      modules.value = import.meta.glob("/docs/images/*/*", {
         as: "url",
         eager: true,
       });
