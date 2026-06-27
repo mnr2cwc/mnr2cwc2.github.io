@@ -125,8 +125,7 @@
 
 <script setup>
   import { onMounted, ref } from "vue";
-  import heic2any from "heic2any";
-
+  const hostName = window.location.hostname;
   const seed = Math.floor(Math.random() * 20) + 1;
   const assetMetadata = ref([]);
 
@@ -142,13 +141,33 @@
   }
 
   async function loadAssetsMetadata() {
-    const modules = import.meta.glob("/src/assets/*/*", {
-      as: "url",
-      eager: true,
-    });
+    // const location = hostName == "localhost" ? "src" : "docs";
+    // const location = "src";
+    // const modules = import.meta.glob("/" + location + "/assets/*/*", {
+    //   as: "url",
+    //   eager: true,
+    // });
+
+    // const location1 = "src";
+    // const location2 = `/${location1}/assets/*/*`;
+    // const location3 = "/src/assets/*/*";
+
+    const modules = ref([]);
+
+    if (hostName === "localhost") {
+      modules.value = import.meta.glob("/src/assets/*/*", {
+        as: "url",
+        eager: true,
+      });
+    } else {
+      modules.value = import.meta.glob("/docs/assets/*/*", {
+        as: "url",
+        eager: true,
+      });
+    }
 
     assetMetadata.value = await Promise.all(
-      Object.entries(modules).map(async ([path, url]) => {
+      Object.entries(modules.value).map(async ([path, url]) => {
         const fileName = path.split("/").pop();
         const item = { path, fileName, url };
 
