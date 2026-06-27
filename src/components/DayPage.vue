@@ -207,14 +207,15 @@
 
   function test2(n) {
     const assets = selectAssets(props.day.shortLabel);
+    const mid = ref({});
     if (hostName === "localhost") {
-      const mid = assets[(n + seed - 1) % assets?.length]?.path;
+      mid.value = assets[(n + seed - 1) % assets?.length]?.path;
     } else {
-      const mid = assets[(n + seed - 1) % assets?.length]?.url;
+      mid.value = assets[(n + seed - 1) % assets?.length]?.url;
     }
 
     // console.log((n + seed - 1) % assets?.length);
-    return mid;
+    return mid.value;
   }
 
   onMounted(async () => {
