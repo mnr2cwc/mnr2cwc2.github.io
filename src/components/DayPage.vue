@@ -125,7 +125,9 @@
 
 <script setup>
   import { onMounted, ref } from "vue";
+  import heic2any from "heic2any";
 
+  const seed = Math.floor(Math.random() * 20) + 1;
   const assetMetadata = ref([]);
 
   function getImageDimensions(url) {
@@ -186,7 +188,8 @@
 
   function test2(n) {
     const assets = selectAssets(props.day.shortLabel);
-    const mid = assets[(n - 1) % assets?.length]?.path;
+    const mid = assets[(n + seed - 1) % assets?.length]?.path;
+    // console.log((n + seed - 1) % assets?.length);
     return mid;
   }
 
@@ -201,35 +204,35 @@
     },
   });
 
-  const photos2 = {
-    D1: ["images/Day_1_1.JPG", "images/Day_1_2.JPEG", "images/Day_1_3.jpeg"],
-    D2: ["images/Day_2_1.PNG", "images/Day_2_2.jpeg"],
-    D3: ["images/Day_3_1.jpeg", "images/Day_3_2.JPG", "images/Day_3_3.JPG"],
-    D4: [
-      "images/Day_4_1.JPG",
-      "images/Day_4_2.JPG",
-      "images/Day_4_3.JPG",
-      "images/Day_4_4.jpeg",
-      "images/Day_4_5.JPG",
-      "images/Day_4_6.jpeg",
-    ],
-    D5: ["images/Day_5_1.JPG", "images/Day_5_2.JPG"],
-    D6: ["images/Day_6_1.JPG"],
-    D7: ["images/Day_7_1.jpeg", "images/Day_7_2.JPG", "images/Day_7_3.jpeg"],
-    D8: ["images/Day_8_1.jpeg", "images/Day_8_2.JPG", "images/Day_8_3.jpeg"],
-    D9: [
-      "images/Day_9_4.jpeg",
-      "images/Day_9_1.JPG",
-      "images/Day_9_2.JPG",
-      "images/Day_9_3.jpeg",
-    ],
-    // Add more days as needed
-  };
-  const photos = [
-    "images/Day_1_1.JPG",
-    "images/Day_1_2.JPEG",
-    "images/Day_1_3.jpeg",
-  ];
+  // const photos2 = {
+  //   D1: ["images/Day_1_1.JPG", "images/Day_1_2.JPEG", "images/Day_1_3.jpeg"],
+  //   D2: ["images/Day_2_1.PNG", "images/Day_2_2.jpeg"],
+  //   D3: ["images/Day_3_1.jpeg", "images/Day_3_2.JPG", "images/Day_3_3.JPG"],
+  //   D4: [
+  //     "images/Day_4_1.JPG",
+  //     "images/Day_4_2.JPG",
+  //     "images/Day_4_3.JPG",
+  //     "images/Day_4_4.jpeg",
+  //     "images/Day_4_5.JPG",
+  //     "images/Day_4_6.jpeg",
+  //   ],
+  //   D5: ["images/Day_5_1.JPG", "images/Day_5_2.JPG"],
+  //   D6: ["images/Day_6_1.JPG"],
+  //   D7: ["images/Day_7_1.jpeg", "images/Day_7_2.JPG", "images/Day_7_3.jpeg"],
+  //   D8: ["images/Day_8_1.jpeg", "images/Day_8_2.JPG", "images/Day_8_3.jpeg"],
+  //   D9: [
+  //     "images/Day_9_4.jpeg",
+  //     "images/Day_9_1.JPG",
+  //     "images/Day_9_2.JPG",
+  //     "images/Day_9_3.jpeg",
+  //   ],
+  //   // Add more days as needed
+  // };
+  // const photos = [
+  //   "images/Day_1_1.JPG",
+  //   "images/Day_1_2.JPEG",
+  //   "images/Day_1_3.jpeg",
+  // ];
   const lightboxOpen = ref(false);
   const lightboxIndex = ref(1);
   function openLightbox(n) {
