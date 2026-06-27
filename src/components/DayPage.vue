@@ -40,14 +40,15 @@
           :class="{ featured: n === 1 }"
           @click="openLightbox(n)"
         >
-          <img
-            :src="
-              photos2[day.shortLabel][(n - 1) % photos2[day.shortLabel].length]
-            "
-            :alt="`Photo ${n}`"
-            class="photo-img"
-          />
+          <img :src="test2(n)" :alt="`Photo ${n}`" class="photo-img" />
           <!-- <div class="photo-placeholder">
+
+            selectAssets(day.shortLabel)[(n - 1) % photos2[day.shortLabel].length]
+
+
+                          selectAssets(day.shortLabel)[
+                (n - 1) % selectAssets(day.shortLabel).length
+              ].path
             :src="photos[(n - 1) % photos.length]"
                         :src="photos[day.id][(n - 1) % photos.length]"
             <div class="placeholder-inner">
@@ -78,12 +79,8 @@
         ></button>
         <div class="lightbox-content">
           <img
-            :src="
-              photos2[day.shortLabel][
-                (lightboxIndex - 1) % photos2[day.shortLabel].length
-              ]
-            "
-            :alt="`Photo ${n}`"
+            :src="test2(lightboxIndex)"
+            :alt="`Photo ${lightboxIndex}`"
             class="photo-img"
           />
           <!-- <div class="lightbox-placeholder">
@@ -143,7 +140,7 @@
   }
 
   async function loadAssetsMetadata() {
-    const modules = import.meta.glob("/src/assets/peruPics/*", {
+    const modules = import.meta.glob("/src/assets/*/*", {
       as: "url",
       eager: true,
     });
@@ -172,7 +169,25 @@
       }),
     );
 
-    console.log("Loaded asset metadata:", assetMetadata.value);
+    // console.log("Loaded asset metadata:", assetMetadata.value);
+  }
+
+  function selectAssets(dayShortLabel) {
+    // loadAssetsMetadata();
+    // await loadAssetsMetadata();
+    //   assetMetadata.value.filter((item) =>
+    //     item.path.includes(`/${dayShortLabel}/`),
+    //   ),
+    // );
+    return assetMetadata.value.filter((item) =>
+      item.path.includes(`/${dayShortLabel}/`),
+    );
+  }
+
+  function test2(n) {
+    const assets = selectAssets(props.day.shortLabel);
+    const mid = assets[(n - 1) % assets?.length]?.path;
+    return mid;
   }
 
   onMounted(async () => {
@@ -220,6 +235,8 @@
   function openLightbox(n) {
     lightboxIndex.value = n;
     lightboxOpen.value = true;
+    // console.log(props.day);
+    // console.log(selectAssets(props.day.shortLabel));
     // console.log(assetMetadata.value);
     // console.log(photos2[props.day.shortLabel]);
     // console.log(props.day);
